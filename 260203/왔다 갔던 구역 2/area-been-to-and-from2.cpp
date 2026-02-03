@@ -4,7 +4,7 @@
 using namespace std;
 
 int n, pos, dirNum, result;
-int x[100], cnt[200];
+int x[100], cnt[2000];
 char dir[100];
 
 int main()
@@ -20,7 +20,7 @@ int main()
             
         for(int j = 0; j < x[i]; j++)
         {
-            cnt[pos+100]++;
+            cnt[pos+1000]++;
             pos += 1 * dirNum;
         }
     }
