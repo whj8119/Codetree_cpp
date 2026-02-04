@@ -2,13 +2,13 @@
 
 using namespace std;
 
-int n, dirNum, pos, white, black, gray;
-int x[1000];
-char dir[1000];
-int cnt[2000000];
-const int kIndex = 1000000;
+int n, dirNum, pos, whiteCnt, blackCnt, grayCnt;
+int x[1000], white[200000], black[200000];
+char dir[1000], tile[200000];
+const int kIndex = 100000;
 
-int main() {
+int main()
+{
     cin >> n;
 
     for (int i = 0; i < n; i++)
@@ -16,56 +16,36 @@ int main() {
         cin >> x[i] >> dir[i];
 
         dirNum = dir[i] == 'R' ? 1 : -1;
-        cnt[pos + kIndex]++;
-        for(int j = 0; j < x[i]-1; j++)
+        for(int j = 0; j < x[i]; j++)
         {
-            pos += dirNum;
-            cnt[pos + kIndex]++;
+            int index = pos + kIndex + (j*dirNum);
+            if(dirNum == 1)
+            {
+                tile[index] = 'B';
+                black[index]++;
+            }
+            else
+            {
+                tile[index] = 'W';
+                white[index]++;
+            }
         }
+        pos += (x[i]-1) * dirNum;
     }
 
-    for(int i = 0; i < kIndex; i++)
+    for(int i = 0; i < kIndex*2; i++)
     {
-        if (cnt[i] <= 0)
+        if(tile[i] == '\0')
             continue;
-        else if(cnt[i] >= 4)
-            gray++;
-        else if(cnt[i] % 2 == 1)
-            white++;
+        else if(black[i] >= 2 && white[i] >= 2)
+            grayCnt++;
+        else if(tile[i] == 'W')
+            whiteCnt++;
         else
-            black++; 
+            blackCnt++; 
     }
 
-    if (cnt[kIndex] >= 4)
-        gray++;
-    else if(dir[0] == 'L')
-    {
-        if(cnt[kIndex] % 2 == 1)
-            white++;
-        else
-            black++;
-    }
-    else
-    {
-        if(cnt[kIndex] % 2 == 1)
-            black++;
-        else
-            white++;
-    }
-
-    for(int i = kIndex+1; i < kIndex*2; i++)
-    {
-        if (cnt[i] <= 0)
-            continue;
-        else if(cnt[i] >= 4)
-            gray++;
-        else if(cnt[i] % 2 == 1)
-            black++;
-        else
-            white++; 
-    }
-
-    cout << white << ' ' << black << ' ' << gray;
+    cout << whiteCnt << ' ' << blackCnt << ' ' << grayCnt;
 
     return 0;
 }
