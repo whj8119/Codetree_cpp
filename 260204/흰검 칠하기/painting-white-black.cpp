@@ -36,7 +36,24 @@ int main() {
             black++; 
     }
 
-    for(int i = kIndex; i < kIndex*2; i++)
+    if (cnt[kIndex] >= 4)
+        gray++;
+    else if(dir[0] == 'L')
+    {
+        if(cnt[kIndex] % 2 == 1)
+            white++;
+        else
+            black++;
+    }
+    else
+    {
+        if(cnt[kIndex] % 2 == 1)
+            black++;
+        else
+            white++;
+    }
+
+    for(int i = kIndex+1; i < kIndex*2; i++)
     {
         if (cnt[i] <= 0)
             continue;
@@ -47,6 +64,8 @@ int main() {
         else
             white++; 
     }
+
+    cout << white << ' ' << black << ' ' << gray;
 
     return 0;
 }
