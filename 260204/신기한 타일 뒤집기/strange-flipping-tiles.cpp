@@ -1,10 +1,10 @@
 #include <iostream>
 using namespace std;
 
-#define MAX_SIZE 1000000
+#define MAX_DISTANCE 100000
 
 int n, x, pos, w, b;
-int tile[MAX_SIZE];
+int tile[MAX_DISTANCE * 2];
 char dir;
 
 int main()
@@ -19,7 +19,7 @@ int main()
         {
             while(x--)
             {
-                tile[pos] = 1;
+                tile[pos + MAX_DISTANCE] = 1;
                 if(x) pos--;
             }
         }
@@ -27,13 +27,13 @@ int main()
         {
             while(x--)
             {
-                tile[pos] = 2;
+                tile[pos + MAX_DISTANCE] = 2;
                 if(x) pos++;
             }
         }
     }
 
-    for(int i = 0; i < MAX_SIZE; i++)
+    for(int i = 0; i < MAX_DISTANCE * 2; i++)
     {
         if(tile[i] == 1)
             w++;
@@ -41,7 +41,7 @@ int main()
             b++;
     }
 
-    cout << w << b;
+    cout << w << ' ' << b;
 
     return 0;
 }
