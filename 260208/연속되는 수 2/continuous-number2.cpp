@@ -23,7 +23,8 @@ int main()
             cnt = 1;
         }
     }
-        
+    
+    maxCnt = max(cnt, maxCnt);
     cout << maxCnt;
 
     return 0;
