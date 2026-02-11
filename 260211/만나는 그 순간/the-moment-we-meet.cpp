@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -50,7 +51,7 @@ int main()
 
     int result = -1;
 
-    for(int i = 1; i < MAX_SIZE; i++)
+    for(int i = 1; i < min(aTime, bTime); i++)
     {
         if(a[i] == b[i])
         {
