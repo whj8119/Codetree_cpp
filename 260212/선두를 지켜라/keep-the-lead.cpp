@@ -30,7 +30,7 @@ int main()
         bTime += t;
     }
 
-    first = -1;
+    cnt = -1;
 
     for(int i = 0; i <= aTime; i++)
     {
